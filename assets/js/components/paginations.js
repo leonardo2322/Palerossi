@@ -1,39 +1,93 @@
-export const navBarMenu = () => {
-    const buttonToggle = document.getElementById('menu')
-    const navMenu = document.getElementById('items')
-    const link = document.querySelectorAll('.item')
-    const iconNav = document.querySelector('.fa-bars')
+import { numberToCurrency } from "../helpers/numberCurrency.js"
+import { db } from "./products.js"
 
-    buttonToggle.addEventListener("click", () => {
-        navMenu.classList.toggle('active')
-        if (buttonToggle) {
-            iconNav.classList.toggle('fa-xmark')
-        }
-    })
+export const pagination = () => {
+    const product = db.methods.getAll()
+    const productLength = product.length
+    
+    const itemsPerPage = 5;
+    let currentPage = 1;
 
-    link.forEach(item => {
-        item.addEventListener('click', () => {
-            navMenu.classList.remove('active')
-            iconNav.classList.remove('fa-xmark')
-        })
-    })
-}
+    function showPage(pageNumber, product) {
+        currentPage = pageNumber;
+        const startIndex = (pageNumber - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const pageData = product.slice(startIndex, endIndex);
 
-const up = document.querySelector('.scroll-up')
-export const scrollToTop = () => {
+        const dataContainer = document.getElementById("product-container");
+        dataContainer.innerHTML = "";
+        let html = ''
 
-    up.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+        pageData.forEach((item) => {
+            html += `
+            <div class="grid">
+                <div class="card" id="card" data-id="${item.id}">
+                    <div class="card-img">
+                        <img src=".${item.imagen}" alt="${item.titulo}">
+                    </div>
+                    <div class="card-description">
+                        <h4 class="card-title">${item.titulo}</h4>
+                        <span class="card-price">${numberToCurrency(item.precio)}</span>
+                        <span class="card-details">Lorem ipsum dolor sit amet.</span>
+                    </div>
+                    <div class="addCart" id="addCart">
+                        <i class="fa-solid fa-cart-plus addCarts" data-id="${item.id}"></i>
+                    </div>
+                </div>
+            </div>
+            `
+            dataContainer.innerHTML = html;
         });
-    })
-}
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-        up.style.display = 'block';
-    } else {
-        up.style.display = 'none';
+        updatePaginationButtons();
     }
-});
+
+    function generatePaginationButtons(totalPages) {
+        const paginationContainer = document.getElementById("number-page");
+        paginationContainer.innerHTML = "";
+
+        for (let i = 1; i <= totalPages; i++) {
+            const button = document.createElement("button");
+            button.classList.add('counter-page')
+            button.textContent = i;
+            button.addEventListener("click", () => showPage(i, product));
+            paginationContainer.appendChild(button);
+        }
+    }
+
+    function updatePaginationButtons() {
+        const buttons = document.querySelectorAll("#number-page .counter-page");
+        buttons.forEach((button, index) => {
+            if (index + 1 === currentPage) {
+                button.classList.add("current");
+            } else {
+                button.classList.remove("current");
+            }
+        });
+    }
+
+    function goToNextPage() {
+        const totalPages = Math.ceil(productLength / itemsPerPage);
+        if (currentPage < totalPages) {
+            showPage(currentPage + 1, product);
+        }
+    }
+
+    function goToPrevPage() {
+        if (currentPage > 1) {
+            showPage(currentPage - 1, product);
+        }
+    }
+
+    function initializePagination() {
+        const totalPages = Math.ceil(productLength / itemsPerPage);
+        generatePaginationButtons(totalPages);
+        showPage(currentPage, product);
+
+        document.getElementById("prev").addEventListener("click", goToPrevPage);
+        document.getElementById("next").addEventListener("click", goToNextPage);
+    }
+
+    initializePagination();
+
+}

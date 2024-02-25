@@ -1,104 +1,62 @@
-import { numberToCurrency } from "../helpers/numberCurrency.js"
-import { cart, renderCart } from "./cart.js"
-import { db } from "./products.js"
+export const modal = () => {
+    const openModal = document.querySelectorAll('.shortcuts__items');
+    const closeModal = document.querySelectorAll('.close-modal');
+    let modalContent = null; // Definir la variable fuera de los bucles
+    let modalContainer = null; // Declaración global
 
-export const findProductModal = () => {
-    const selectProductModal = document.querySelector('.modal__product-select')
-    const containerModal = document.querySelector('.modal__product-select')
+    openModal.forEach((open) => {
+        open.addEventListener('click', () => {
+            const target = open.getAttribute('data-target');
+            modalContent = document.getElementById(target); // Asignar el valor aquí
 
-    const cardProductSelect = (event) => {
-        const card = event.target
-        const id = parseInt(card.getAttribute('data-id'))
-        const product = db.methods.find(id)
-        let html = ""
+            modalContainer = modalContent.closest('.modal-container'); // Asignación global
+            modalContainer.style.opacity = '1';
+            modalContainer.style.visibility = 'visible';
+        });
+    });
 
-        html += `
-        <div class="modal-select">
-            <div class="modal-header-select">
-                <h3>Producto <span>${product.titulo}</span></h3>
-                <span class="close-modal"><i class="fa-solid fa-xmark"></i></span>
-            </div>
-            <div class="modal-body-select">
-                <img src=".${product.imagen}" alt="${product.titulo}">
-                <div class="modal__content-select">
-                    <h3>${product.titulo}</h3>
-                    <span>${numberToCurrency(product.precio)}</span>
-                    <p>${product.detalles}</p>
-                </div>
-            </div>
-            <div class="addCartSelect">
-                <button class="btn add-cart-btn" data-id="${product.id}">
-                    Añadir al Carrito
-                    <i class="fa-solid fa-cart-plus"></i>
-                </button>
-            </div>
-        </div>
-        
-        `
-
-        selectProductModal.innerHTML = html
-    }
-
-    const handleClickButton = (event) => {
-        const button = event.target
-        const id = parseInt(button.getAttribute('data-id'))
-        const product = db.methods.find(id)
-
-        if (product && product.quantity > 0) {
-            cart.methods.add(id, 1, product.titulo, product.precio)
-                containerModal.style.opacity = '0'
-                containerModal.style.visibility = 'hidden';
-            renderCart()
-        } else {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
-
-            Toast.fire({
-                icon: 'error',
-                title: 'No Tenemos mas productos en stock'
-            })
-        }
-    }
-
-    document.addEventListener('click', (event) => {
-        if (event.target && event.target.classList.contains("add-cart-btn")) {
-            handleClickButton(event)
-        }
-    })
-
-
-    const buttonCardSelect = (event) => {
-        event.stopPropagation()
-        const closeModal = document.querySelectorAll('.close-modal');
-        const card = event.target
-
-        if (card) {
-            containerModal.style.opacity = '1';
-            containerModal.style.visibility = 'visible';
-        }
-
-        closeModal.forEach(close => {
-            close.addEventListener('click', () => {
-                containerModal.style.opacity = '0'
-                containerModal.style.visibility = 'hidden';
-            })
+    closeModal.forEach(close => {
+        close.addEventListener('click', () => {
+            modalContent.classList.toggle('modal-close');
+            setTimeout(() => {
+                modalContainer.style.opacity = '0';
+                modalContainer.style.visibility = 'hidden';
+                modalContent.classList.remove('modal-close')
+            }, 500);
         })
-    }
-
-
-    document.addEventListener('click', (event) => {
-        if (event.target && event.target.classList.contains("card")) {
-            cardProductSelect(event)
-            buttonCardSelect(event)
-        }
     })
-}
+
+    window.addEventListener('click', (e) => {
+        if (e.target === modalContainer) {
+            modalContent.classList.toggle('modal-close');
+            setTimeout(() => {
+                modalContainer.style.opacity = '0';
+                modalContainer.style.visibility = 'hidden';
+            }, 500);
+        }
+    });
+};
+
+/* const modalButtons = document.querySelectorAll(".modal-button"); // abrir modal
+const modals = document.querySelectorAll(".modal"); // contenedor modal
+const closeButton = document.querySelectorAll(".close-button"); // cerrar modal
+
+modalButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+        const target = button.getAttribute("data-target");
+        const modal = document.getElementById(target);
+
+        modals.forEach(function (modal) {
+            modal.style.display = "none";
+        });
+
+        modal.style.display = "block";
+    });
+});
+
+closeButton.forEach(function (button) {
+    button.addEventListener("click", function () {
+        const modal = button.closest(".modal");
+        modal.style.display = "none";
+    });
+}); */
