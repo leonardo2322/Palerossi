@@ -2,7 +2,7 @@ export const items = [
     {
         "id": 1,
         "titulo": "Catalinas",
-        "imagen": "./assets/img/qksjoys.jpg",
+        "imagen": "/assets/img/qksjoys.jpg",
         "precio": 2,
         "quantity": 100,
         "detalles":"producto casero"
@@ -10,7 +10,7 @@ export const items = [
     {
         "id": 2,
         "titulo": "Galletas Decoradas 10 x 1",
-        "imagen": "./assets/img/galletasDecoradas2.jpg",
+        "imagen": "/assets/img/galletasDecoradas2.jpg",
         "precio": 1,
         "quantity": 10,
         "detalles":"producto casero"
@@ -19,7 +19,7 @@ export const items = [
     {
         "id": 3,
         "titulo": "Tortas",
-        "imagen": "./assets/img/tortaCereza.jpg",
+        "imagen": "/assets/img/tortaCereza.jpg",
         "precio": 17,
         "quantity": 10,
         "detalles":"producto casero"
@@ -27,7 +27,7 @@ export const items = [
     {
         "id": 4,
         "titulo": "Pasteles Rellenos hojaldrados de arequipe",
-        "imagen": "./assets/img/PastelitoArequipe.jpg",
+        "imagen": "/assets/img/PastelitoArequipe.jpg",
         "precio": 1.90,
         "quantity": 10,
         "detalles":"producto casero"
@@ -35,7 +35,7 @@ export const items = [
     {
         "id": 5,
         "titulo": "Pasteles Rellenos hojaldrados de guayaba",
-        "imagen": "./assets/img/Chicharron de Guayaba.jpg",
+        "imagen": "/assets/img/Chicharron de Guayaba.jpg",
         "precio": 1.90,
         "quantity": 10,
         "detalles":"producto casero"
@@ -44,7 +44,7 @@ export const items = [
     {
         "id": 6,
         "titulo": "Torta Circular",
-        "imagen": "./assets/img/TortaCircular.jpg",
+        "imagen": "/assets/img/TortaCircular.jpg",
         "precio": 18,
         "quantity": 10,
         "detalles":"producto casero"
@@ -60,7 +60,7 @@ export const items = [
     {
         "id": 8,
         "titulo": "Croassaints",
-        "imagen": "./assets/img/crossaints.jpg",
+        "imagen": "/assets/img/crossaints.jpg",
         "precio": 2,
         "quantity": 10,
         "detalles":"producto casero"
@@ -69,7 +69,7 @@ export const items = [
     {
         "id": 9,
         "titulo": "Churros de arequipe",
-        "imagen": "./assets/img/Donas.jpg",
+        "imagen": "/assets/img/Donas.jpg",
         "precio": 1.20,
         "quantity": 10,
         "detalles":"producto casero"
@@ -77,7 +77,7 @@ export const items = [
     {
         "id": 10,
         "titulo": "Panderitos 3 x 1",
-        "imagen": "./assets/img/Polvorosas.jpg",
+        "imagen": "/assets/img/Polvorosas.jpg",
         "precio": 1,
         "quantity": 10,
         "detalles":"producto casero"
