@@ -3,7 +3,7 @@ export const items = [
         "id": 1,
         "titulo": "Catalinas",
         "imagen": "/assets/img/qksjoys.jpg",
-        "precio": 2,
+        "precio": 1.5,
         "quantity": 100,
         "detalles":"producto casero"
     },

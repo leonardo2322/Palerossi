@@ -117,7 +117,7 @@ export function renderCart() {
                             <br>
                             <span>subTotal: ${numberToCurrency(item.quantity * product.precio)}<span>
                             <br>
-                            <span class="tbody-card-details">Lorem ipsum dolor sit amet.</span>
+                            <span class="tbody-card-details">${product.detalles}</span>
                         </span>
                     </div>
                 </article>
@@ -143,7 +143,7 @@ export function renderCart() {
     } else {
         html += `<div class="cart__empty">
         <img src="assets/img/empty-cart.png" alt="empty cart">
-        <h2>Your cart is empty</h2>
+        <h2>El carrito esta vacio</h2>
         <p> Puede agregar artículos a su carrito haciendo clic en el botón "<i class="fa-solid fa-plus"></i>" en la página del producto.</p>
         </div>
     `

@@ -20,9 +20,9 @@ export const sendMessage = () => {
             counterProduct++
         })
 
-        let mensage = `Orden N°: ${counterProduct} \n \n Hola Te Saluda La Rosa Pan \n \n Tipo de servicio: Compra \n \n Estado del pago: No Pagado \n \n Descripcion: 📝\n ${textoProducto} \n \n Total Compra: $${totalCart} \n \n Gracias por comprar con nosotros enseguida te atenderemos.` 
+        let mensage = `Orden N°: ${counterProduct} \n \n Hola Te Saluda Palerossi \n \n Tipo de servicio: Compra \n \n Estado del pago: No Pagado \n \n Descripcion: 📝\n ${textoProducto} \n \n Total Compra: $${totalCart} \n \n Gracias por comprar con nosotros enseguida te atenderemos.` 
 
-        const tlf = '584126441334'
+        const tlf = '573502117928'
 
         const enlaceWhatsapp = `https://wa.me/${tlf}/?text=` + encodeURIComponent(mensage)
 
