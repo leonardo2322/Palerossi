@@ -1,93 +1,128 @@
-import { numberToCurrency } from "../helpers/numberCurrency.js"
-import { db } from "./products.js"
+import { numberToCurrency } from "../helpers/numberCurrency.js";
+import { db } from "./products.js";
 
 export const pagination = () => {
-    const product = db.methods.getAll()
-    const productLength = product.length
-    
-    const itemsPerPage = 5;
-    let currentPage = 1;
+  const product = db.methods.getAll();
 
-    function showPage(pageNumber, product) {
-        currentPage = pageNumber;
-        const startIndex = (pageNumber - 1) * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
-        const pageData = product.slice(startIndex, endIndex);
+  const tipoDatos = ["burgers", "bebidas", "porciones"];
+  let options = JSON.parse(localStorage.getItem("options"));
+  const itemsPerPage = 5;
+  let currentPage = 1;
+  const productLength = renderItems(product, currentPage, options.p)[0][
+    options.p
+  ].length;
 
-        const dataContainer = document.getElementById("product-container");
-        dataContainer.innerHTML = "";
-        let html = ''
+  function showPage(pageNumber, product) {
+    currentPage = pageNumber;
+    const startIndex = (pageNumber - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const tipoDatos = ["burgers", "bebidas", "porciones"];
 
-        pageData.forEach((item) => {
-            html += `
-            <div class="grid">
-                <div class="card" id="card" data-id="${item.id}">
-                    <div class="card-img">
-                        <img src=".${item.imagen}" alt="${item.titulo}">
-                    </div>
-                    <div class="card-description">
-                        <h4 class="card-title">${item.titulo}</h4>
-                        <span class="card-price">${numberToCurrency(item.precio)}</span>
-                        <span class="card-details">${item.detalles}</span>
-                    </div>
-                    <div class="addCart" id="addCart">
-                        <i class="fa-solid fa-cart-plus addCarts" data-id="${item.id}"></i>
-                    </div>
-                </div>
-            </div>
-            `
-            dataContainer.innerHTML = html;
+    const dataContainer = document.getElementById("product-container");
+    dataContainer.innerHTML = "";
+    let html = "";
+
+    tipoDatos.forEach((tipo) => {
+      if (product[0].hasOwnProperty(tipo)) {
+        const datos = product[0][tipo].slice(startIndex, endIndex);
+
+        datos.forEach((item) => {
+          html += `
+                  <div class="card" id="card" data-id="${item.id}">
+                      <div class="card-img">
+                          <div class="img">
+                              <img src="${item.imagen}" alt="${item.titulo}">
+                          </div>
+                      </div>
+                      <div class="card-title">${item.titulo}</div>
+                      <div class="card-subtitle">${item.detalles}</div>
+                      <hr class="card-divider">
+                      <div class="card-footer">
+                          <div class="card-price">${numberToCurrency(
+                            item.precio
+                          )}</div>
+                          <button class="card-btn">
+                              <i class="fa-solid fa-cart-plus addCarts" data-id="${
+                                item.id
+                              }"></i>
+                          </button>
+                          <button class="card-btn">
+                              <i class="eyes fa-solid fa-eye" data-id="${
+                                item.id
+                              }"></i>
+                          </button>
+                      </div>
+                  </div>
+              `;
         });
+      }
+    });
 
-        updatePaginationButtons();
-    }
+    dataContainer.innerHTML = html;
+    updatePaginationButtons();
+  }
 
-    function generatePaginationButtons(totalPages) {
-        const paginationContainer = document.getElementById("number-page");
-        paginationContainer.innerHTML = "";
+  function renderItems(prod, current, elmnt) {
+    const filteredItems = prod.filter((item) => {
+      // Filtrar por la propiedad `elmnt` según `options.p`
 
-        for (let i = 1; i <= totalPages; i++) {
-            const button = document.createElement("button");
-            button.classList.add('counter-page')
-            button.textContent = i;
-            button.addEventListener("click", () => showPage(i, product));
-            paginationContainer.appendChild(button);
+      return (
+        item.hasOwnProperty(elmnt) && Object.keys(item).includes(options.p)
+      );
+    });
+
+    return filteredItems;
+  }
+
+  function generatePaginationButtons(data) {
+    const paginationContainer = document.getElementById("number-page");
+    paginationContainer.innerHTML = "";
+
+    tipoDatos.forEach((tipo) => {
+      if (data[0].hasOwnProperty(tipo)) {
+        const tipoData = data[0][tipo];
+        for (let i = 1; i <= Math.ceil(tipoData.length / itemsPerPage); i++) {
+          const button = document.createElement("button");
+          button.classList.add("counter-page");
+          button.textContent = i;
+          button.addEventListener("click", () => showPage(i, data));
+          paginationContainer.appendChild(button);
         }
+      }
+    });
+  }
+  function updatePaginationButtons() {
+    const buttons = document.querySelectorAll("#number-page .counter-page");
+    buttons.forEach((button, index) => {
+      if (index + 1 === currentPage) {
+        button.classList.add("current");
+      } else {
+        button.classList.remove("current");
+      }
+    });
+  }
+
+  function goToNextPage() {
+    const totalPages = Math.ceil(productLength / itemsPerPage);
+    if (currentPage < totalPages) {
+      showPage(currentPage + 1, renderItems(product, currentPage, options.p));
     }
+  }
 
-    function updatePaginationButtons() {
-        const buttons = document.querySelectorAll("#number-page .counter-page");
-        buttons.forEach((button, index) => {
-            if (index + 1 === currentPage) {
-                button.classList.add("current");
-            } else {
-                button.classList.remove("current");
-            }
-        });
+  function goToPrevPage() {
+    if (currentPage > 1) {
+      showPage(currentPage - 1, renderItems(product, currentPage, options.p));
     }
+  }
 
-    function goToNextPage() {
-        const totalPages = Math.ceil(productLength / itemsPerPage);
-        if (currentPage < totalPages) {
-            showPage(currentPage + 1, product);
-        }
-    }
+  function initializePagination() {
+    generatePaginationButtons(renderItems(product, currentPage, options.p));
+    showPage(currentPage, renderItems(product, currentPage, options.p));
+    // showPage(currentPage, product);
 
-    function goToPrevPage() {
-        if (currentPage > 1) {
-            showPage(currentPage - 1, product);
-        }
-    }
+    document.getElementById("prev").addEventListener("click", goToPrevPage);
+    document.getElementById("next").addEventListener("click", goToNextPage);
+  }
 
-    function initializePagination() {
-        const totalPages = Math.ceil(productLength / itemsPerPage);
-        generatePaginationButtons(totalPages);
-        showPage(currentPage, product);
-
-        document.getElementById("prev").addEventListener("click", goToPrevPage);
-        document.getElementById("next").addEventListener("click", goToNextPage);
-    }
-
-    initializePagination();
-
-}
+  initializePagination();
+};
