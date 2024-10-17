@@ -1,1 +1,1 @@
-export let standard = { p: "burgers" };
+export let standard = { p: "pan" };

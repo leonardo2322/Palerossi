@@ -4,8 +4,9 @@ import { db } from "./products.js";
 export const pagination = () => {
   const product = db.methods.getAll();
 
-  const tipoDatos = ["burgers", "bebidas", "porciones"];
+  const tipoDatos = ["pan", "bebidas", "porciones"];
   let options = JSON.parse(localStorage.getItem("options"));
+  console.log(options);
   const itemsPerPage = 5;
   let currentPage = 1;
   const productLength = renderItems(product, currentPage, options.p)[0][
@@ -16,7 +17,7 @@ export const pagination = () => {
     currentPage = pageNumber;
     const startIndex = (pageNumber - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    const tipoDatos = ["burgers", "bebidas", "porciones"];
+    const tipoDatos = ["pan", "bebidas", "porciones"];
 
     const dataContainer = document.getElementById("product-container");
     dataContainer.innerHTML = "";
@@ -65,7 +66,6 @@ export const pagination = () => {
   function renderItems(prod, current, elmnt) {
     const filteredItems = prod.filter((item) => {
       // Filtrar por la propiedad `elmnt` según `options.p`
-
       return (
         item.hasOwnProperty(elmnt) && Object.keys(item).includes(options.p)
       );

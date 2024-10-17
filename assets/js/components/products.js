@@ -27,7 +27,7 @@ export const db = {
             } else if (Object.keys(categoria)[0] === "porciones") {
               data = categoria.porciones;
             } else {
-              data = categoria.burgers;
+              data = categoria.pan;
             }
 
             // Verificar si categoria[key] es un array antes de llamar a .find()
@@ -44,8 +44,8 @@ export const db = {
         for (var i = 0; i < db.items.length; i++) {
           var category = db.items;
           // Verificar si la categoría tiene la propiedad 'platos' o 'bebidas'
-          if (productlist[0] == "burgers") {
-            var foundItem = db.methods.findInPlatos(category[0], id, "burgers");
+          if (productlist[0] == "pan") {
+            var foundItem = db.methods.findInPlatos(category[0], id, "pan");
             if (foundItem) {
               return foundItem;
             }
@@ -79,7 +79,7 @@ export const db = {
             ? opcion.bebidas
             : element === "porciones"
             ? opcion.porciones
-            : opcion.burgers;
+            : opcion.pan;
         for (var i = 0; i < elm.length; i++) {
           var item = elm[i];
           // Verificar si el elemento tiene el ID buscado

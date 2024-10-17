@@ -14,7 +14,7 @@ export const findProductModal = () => {
     const id = parseInt(card.getAttribute("data-id"));
     let options;
     optionWrapper
-      ? (options = { p: "burgers" })
+      ? (options = { p: "pan" })
       : (options = JSON.parse(localStorage.getItem("options")));
 
     const product = db.methods.find(id, options.p);
