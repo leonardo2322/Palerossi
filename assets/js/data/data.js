@@ -190,7 +190,7 @@ export const items = [
       {
         id: 24,
         titulo: "Brazo de arequipe",
-        imagen: "./assets/img/brazo.png",
+        imagen: "./assets/img/brazo.jpg",
         precio: 10,
         quantity: 100,
         detalles: "Brazo relleno y cubierto de arequipe de 10 und",
