@@ -1308,8 +1308,6 @@ body {
 @media screen {
 }
 @media (min-width: 300px) {
-  .shortcuts {
-  }
   .modal-select {
     top: 1.5rem;
     height: 28rem !important;
