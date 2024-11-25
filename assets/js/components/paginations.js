@@ -28,6 +28,8 @@ export const pagination = () => {
         const datos = product[0][tipo].slice(startIndex, endIndex);
 
         datos.forEach((item) => {
+          const texto = item.disponible ? "Disponible" : "PorEncargo";
+          const color = item.disponible ? "green" : "red";
           html += `
                   <div class="card" id="card" data-id="${item.id}">
                       <div class="card-img">
@@ -35,8 +37,10 @@ export const pagination = () => {
                               <img src="${item.imagen}" alt="${item.titulo}">
                           </div>
                       </div>
-                      <div class="card-title">${item.titulo}</div>
-                      <div class="card-subtitle">${item.detalles}</div>
+                      <div class="card-title" ">${item.titulo}</div>
+                      <div class="card-subtitle" >${
+                        item.detalles
+                      } <span style="color: ${color};">${texto}</span></div>
                       <hr class="card-divider">
                       <div class="card-footer">
                           <div class="card-price">${numberToCurrency(

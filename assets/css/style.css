@@ -875,7 +875,7 @@ body {
   --main-color: #434343;
   --main-focus: #2d8cf0;
   width: 230px;
-  height: 360px;
+  height: 380px;
   background: var(--bg-color);
   border: 2px solid #060101;
   box-shadow: 4px 4px var(--main-color);

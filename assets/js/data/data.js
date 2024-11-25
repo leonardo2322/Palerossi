@@ -8,6 +8,7 @@ export const items = [
         precio: 1.5,
         quantity: 40,
         detalles: "Tradicional Paledonia andina 10 und por paquete",
+        disponible: true,
       },
       {
         id: 2,
@@ -16,6 +17,7 @@ export const items = [
         precio: 2,
         quantity: 20,
         detalles: "Pan relleno de queso y algo mas secreto de la casa 10 und",
+        disponible: false,
       },
       {
         id: 3,
@@ -24,6 +26,7 @@ export const items = [
         precio: 1.5,
         quantity: 20,
         detalles: "Pan tipo salado semi hojaldrado 10 x pq",
+        disponible: false,
       },
       {
         id: 4,
@@ -32,6 +35,7 @@ export const items = [
         precio: 1.5,
         quantity: 20,
         detalles: "Tradicional qk blanca o regañona 10 x pq",
+        disponible: true,
       },
       {
         id: 5,
@@ -40,6 +44,7 @@ export const items = [
         precio: 1.5,
         quantity: 10,
         detalles: "Bombitas o borrachitas pan relleno de crema 10x pq",
+        disponible: true,
       },
       {
         id: 6,
@@ -48,6 +53,7 @@ export const items = [
         precio: 1.5,
         quantity: 25,
         detalles: "pan tostado cubierto de azucar caramelada",
+        disponible: false,
       },
       {
         id: 7,
@@ -56,6 +62,7 @@ export const items = [
         precio: 1.5,
         quantity: 100,
         detalles: "Arepa tradicional andina receta de la nona",
+        disponible: false,
       },
       {
         id: 8,
@@ -64,6 +71,7 @@ export const items = [
         precio: 3,
         quantity: 100,
         detalles: "Galletas de mantequilla ideal para fiestas",
+        disponible: false,
       },
       {
         id: 9,
@@ -72,6 +80,7 @@ export const items = [
         precio: 0.7,
         quantity: 10,
         detalles: "almohabana tradicional medillense",
+        disponible: false,
       },
       {
         id: 10,
@@ -80,6 +89,7 @@ export const items = [
         precio: 1.7,
         quantity: 10,
         detalles: "Pan hojaldrado relleno de queso o jamon y queso ",
+        disponible: false,
       },
     ],
   },
@@ -92,6 +102,7 @@ export const items = [
         precio: 1.3,
         quantity: 10,
         detalles: "Refresco de cola tamaño personal",
+        disponible: true,
       },
       {
         id: 12,
@@ -100,6 +111,7 @@ export const items = [
         precio: 1.3,
         quantity: 10,
         detalles: "Refresco de cola",
+        disponible: true,
       },
 
       {
@@ -109,6 +121,7 @@ export const items = [
         precio: 2.5,
         quantity: 100,
         detalles: "Refresco de cola",
+        disponible: true,
       },
       {
         id: 14,
@@ -117,6 +130,7 @@ export const items = [
         precio: 1.3,
         quantity: 80,
         detalles: "Refresco de lima-limón",
+        disponible: true,
       },
 
       {
@@ -126,6 +140,7 @@ export const items = [
         precio: 1.2,
         quantity: 120,
         detalles: "Agua sin gas",
+        disponible: true,
       },
       {
         id: 17,
@@ -134,6 +149,7 @@ export const items = [
         precio: 1.2,
         quantity: 10,
         detalles: "Cerveza polar en lata",
+        disponible: true,
       },
       {
         id: 18,
@@ -142,6 +158,7 @@ export const items = [
         precio: 1,
         quantity: 90,
         detalles: "Té frío sin azúcar",
+        disponible: false,
       },
       {
         id: 19,
@@ -150,6 +167,7 @@ export const items = [
         precio: 1.2,
         quantity: 100,
         detalles: "gaseosa saborizada uva",
+        disponible: true,
       },
       {
         id: 20,
@@ -158,6 +176,7 @@ export const items = [
         precio: 1.2,
         quantity: 10,
         detalles: "Cerveza polar en lata",
+        disponible: true,
       },
     ],
   },
@@ -170,6 +189,7 @@ export const items = [
         precio: 14,
         quantity: 10,
         detalles: "Torta de medio kilo",
+        disponible: false,
       },
       {
         id: 22,
@@ -178,6 +198,7 @@ export const items = [
         precio: 30,
         quantity: 10,
         detalles: "Torta 2 pisos",
+        disponible: false,
       },
       {
         id: 23,
@@ -186,6 +207,7 @@ export const items = [
         precio: 15.7,
         quantity: 10,
         detalles: "Torta de cualquier relleno",
+        disponible: false,
       },
       {
         id: 24,
@@ -194,6 +216,7 @@ export const items = [
         precio: 10,
         quantity: 100,
         detalles: "Brazo relleno y cubierto de arequipe de 10 und",
+        disponible: false,
       },
       {
         id: 25,
@@ -203,6 +226,7 @@ export const items = [
         quantity: 100,
         detalles:
           "brazo relleno de guayaba o buttercream decorado con azucar y rojo 10 und",
+        disponible: false,
       },
       {
         id: 26,
@@ -211,6 +235,7 @@ export const items = [
         precio: 2.5,
         quantity: 10,
         detalles: "Torta Cuadrada por pocion",
+        disponible: false,
       },
       {
         id: 27,
@@ -219,6 +244,7 @@ export const items = [
         precio: 1.5,
         quantity: 10,
         detalles: "Donas decoradas de azucar rellenas de arequipe",
+        disponible: false,
       },
 
       {
@@ -228,6 +254,7 @@ export const items = [
         precio: 1.99,
         quantity: 10,
         detalles: "bolitas de queso rellena de guayaba o arequipe 10",
+        disponible: false,
       },
       {
         id: 29,
@@ -236,6 +263,7 @@ export const items = [
         precio: 3.5,
         quantity: 10,
         detalles: "Pizza de tocineta jamon queso estilo italiana",
+        disponible: false,
       },
       {
         id: 30,
@@ -245,6 +273,7 @@ export const items = [
         quantity: 10,
         detalles:
           "Porciones de pan hojaldrado relleno de arequipe guayaba o queso",
+        disponible: false,
       },
     ],
   },
