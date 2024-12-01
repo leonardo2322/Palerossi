@@ -46,12 +46,12 @@ export const pagination = () => {
                           <div class="card-price">${numberToCurrency(
                             item.precio
                           )}</div>
-                          <button class="card-btn">
+                          <button class="card-btn addCarts">
                               <i class="fa-solid fa-cart-plus addCarts" data-id="${
                                 item.id
                               }"></i>
                           </button>
-                          <button class="card-btn">
+                          <button class="card-btn eyes">
                               <i class="eyes fa-solid fa-eye" data-id="${
                                 item.id
                               }"></i>
